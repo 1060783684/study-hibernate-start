@@ -32,5 +32,8 @@
 
         <!--引入映射文件-->
         <mapping resource="User.hbm.xml"/>
+
+        <!--引入映射类-->
+        <mapping class="test.pojo.Pet"/>
     </session-factory>
 </hibernate-configuration>

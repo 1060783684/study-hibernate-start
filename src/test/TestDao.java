@@ -1,6 +1,8 @@
 package test;
 
+import test.dao.PetInfoDao;
 import test.dao.UserInfoDao;
+import test.pojo.Pet;
 import test.pojo.User;
 
 import java.util.Date;
@@ -43,10 +45,33 @@ public class TestDao {
             UserInfoDao.deleteUserInfo(i);
             User user3 = UserInfoDao.selectUserInfoById(i);
             System.out.println(user3);
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+            Pet pet01 = new Pet("wangcai",new Date(2016-1900,10-1,20));
+
+            Integer j = PetInfoDao.insertPetInfo(pet01);
+            System.out.println("pet " + pet01.getName() + " id is :"+j);
+
+            Pet pet1 = PetInfoDao.selectPetInfoById(j);
+            System.out.println(pet1);
+
+            List<Pet> list1 = PetInfoDao.selectAllPet();
+            list1.forEach(x->System.out.println(x));
+
+            PetInfoDao.updatePetInfo(j,"laifu",new Date(2017-1900,11-1,3));
+            Pet pet2 = PetInfoDao.selectPetInfoById(j);
+            System.out.println(pet2);
+
+            PetInfoDao.deletePetInfo(j);
+            Pet pet3 = PetInfoDao.selectPetInfoById(j);
+            System.out.println(pet3);
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             UserInfoDao.close();
+            PetInfoDao.close();
         }
 
     }
