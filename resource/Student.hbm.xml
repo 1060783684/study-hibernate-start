@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="test.pojo">
+    <class name="Student" table="student_info">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+
+        <!--以java类型标识字段类型-->
+        <property name="name" type="java.lang.String">
+            <column name="name"/>
+        </property>
+
+        <!--以hibernate类型标识字段类型-->
+        <property name="birth" type="date">
+            <column name="birth"/>
+        </property>
+
+        <!--组件属性-->
+        <component name="address" class="Address">
+            <property name="mail" column="mail"/>
+            <property name="address" column="address"/>
+        </component>
+    </class>
+
+</hibernate-mapping>

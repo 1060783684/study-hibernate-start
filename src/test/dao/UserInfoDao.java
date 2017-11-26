@@ -35,9 +35,11 @@ public class UserInfoDao {
         Transaction transaction = null;
         Integer userId = null;
         try {
+            /*开启一个事务,如果在操作前不开启事务,结束后不commit,则hibernate不会执行sql语句*/
             transaction = session.beginTransaction();
             /*将对象转换成对应的表数据并插入*/
             userId = (Integer) session.save(user);
+            /*提交事务*/
             transaction.commit();
         }catch (HibernateException e){
             if(transaction != null)

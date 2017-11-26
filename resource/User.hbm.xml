@@ -15,16 +15,19 @@
 
         <!--表的主键和类属性的映射-->
         <id name="id" column="id">
-            <!--这里的identity表示这个列是一个自增列-->
-            <!--class还可以是native:跨数据库时使用，由底层方言产生-->
-            <!--除此之外还有其他类型，以后详解-->
-            <generator class="identity"/>
+            <!--
+            native:代表使用底层数据库方言以自增的方式生成主键
+                       比如mysql是autoincrement
+                       oracle是sequence
+            assigned:代表主键由java程序控制,即用户自己为主键赋值
+            -->
+            <generator class="native"/>
         </id>
 
         <!--常规列和属性映射配置-->
         <!--name: 类的属性名-->
         <!--column: 表的列名-->
-        <!--type: 注意，这里的类型是指的hibernate自定义的类型-->
+        <!--type: 注意，这里的类型是指的hibernate自定义的类型或java中的类型,类型映射看.png图片-->
         <!--hibernate类型与java和数据库类型的映射在说明文件中-->
         <property name="name" column="name" type="string"/>
 

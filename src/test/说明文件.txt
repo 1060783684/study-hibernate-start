@@ -16,4 +16,23 @@
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB
 
-7.JDK环境:jdk1.8,jdk版本过低会报UnsupportedClassVersionError
+7.pet_info表的声明
+    CREATE TABLE `pet_info` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `name` varchar(10) DEFAULT NULL,
+      `brith` date DEFAULT NULL,
+      PRIMARY KEY (`id`)
+    )
+
+8.JDK环境:jdk1.8,jdk版本过低会报UnsupportedClassVersionError
+
+
+9.student_info表的声明
+  Create Table: CREATE TABLE `student_info` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(10) DEFAULT NULL,
+    `birth` date DEFAULT NULL,
+    `mail` varchar(10) DEFAULT NULL,
+    `address` varchar(10) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB

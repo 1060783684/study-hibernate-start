@@ -1,0 +1,7 @@
+1.hibernate的语法与mysql5.7的语法不完全兼容,比如创建表声明数据库引擎,
+　 mysql5.7的语法是ENGINE=InnoDB,而hibernate还是使用的Type=xxx
+　待解决:查看hibernate最新版本号版本,查看版本支持的mysql数据库版本号
+
+2.设置自动提交没有意义,正常情况应该是hibernate的autocommit若为false则没有打开事务不发出sql语句
+　但是现在发出了,而且自动提交了
+　待解决:查看hibernate版本文档,测试hibernate之前版本

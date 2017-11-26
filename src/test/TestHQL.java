@@ -5,25 +5,42 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.jdbc.Work;
 import org.hibernate.query.Query;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import test.pojo.User;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by root on 17-11-24.
+ *
+ *这个程序采用junit测试工具主要依靠注解
+ * ＠Test:注释在方法上,被注释的方法相当于主方法可运行,被注释的方法返回值必须为void类型
+ * @Befor:注释在方法上,表示在@Test方法启动前的初始化方法
+ * @After:注释在方法上,表示在@Test方法结束后的释放资源方法
  */
 public class TestHQL {
     private static SessionFactory sessionFactory;
 
-    static{
+    @Before
+    public void sessionFactoryInit(){
         System.out.println("Hibernate init start...");
         sessionFactory = new Configuration().configure().buildSessionFactory();
         System.out.println("Hibernate init end!");
     }
 
+    @After
+    public void sessionFactoryDestory(){
+        System.out.println("Hibernate destory start...");
+        sessionFactory.close();
+        System.out.println("Hibernate destory end!");
+    }
     @Test
     //查询一整个对象
     public void testFromAs(){
@@ -239,6 +256,37 @@ public class TestHQL {
                 transaction.rollback();
             e.printStackTrace();
         }finally {
+            session.close();
+        }
+    }
+
+    @Test
+    //辅助用,使用程序修改自动提交并提交
+    public  void insertUserInfo(){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        Integer userId = null;
+        try {
+            /*开启一个事务*/
+            transaction = session.beginTransaction();
+            session.doWork(new Work(){
+
+                @Override
+                public void execute(Connection connection) throws SQLException {
+                    //这里的connection为jdbc中的数据库连接对象
+                    //将自动提交设置为true
+                    connection.setAutoCommit(true);
+                }
+            });
+            User user = new User("dangbenben",new Date(1996-1900,5-1,26),"test");
+            userId = (Integer) session.save(user);
+            session.flush();
+            System.out.println("insert into end!");
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally{
             session.close();
         }
     }

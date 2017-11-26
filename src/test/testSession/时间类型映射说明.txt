@@ -1,0 +1,8 @@
+hibernate       java                                 SQL          格式
+date            java.util.Date/java.sql.Date         DATE         日期:yyyy-MM-dd(年－月－日)
+time            java.util.Date/java.sql.Time         TIME         时间:hh:mi:ss(时:分:秒)
+timestamp       java.util.Date/java.sql.Timestamp    TIMESTAMP    日期和时间:yyyymmddhhmiss(年月日时分秒)
+
+以上三种时间类型关键是格式不一样,在java中可以用Date包含所有格式，在sql中分别使用三种类型表示
+
+注:若hibernate-mapping配置文件的字段type值为java.util.Date默认对应为SQL的Timestamp类型
