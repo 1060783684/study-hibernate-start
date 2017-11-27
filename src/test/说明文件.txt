@@ -36,3 +36,13 @@
     `address` varchar(10) DEFAULT NULL,
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB
+
+10.player_info表的声明
+   Create Table: CREATE TABLE `player_info` (
+     `id` int(11) NOT NULL,
+     `name` varchar(10) NOT NULL,
+     `birth` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+     `picture` blob,
+     `address` varchar(12) DEFAULT NULL,
+     PRIMARY KEY (`id`)
+   ) ENGINE=InnoDB

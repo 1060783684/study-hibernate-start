@@ -18,7 +18,7 @@
         <property name="hibernate.connection.username">root</property>
 
         <!--密码-->
-        <property name="hibernate.connection.password">123456</property>
+        <property name="hibernate.connection.password">951357qaz</property>
 
         <!--生成哪种数据库的SQL语句,即数据库方言-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -48,7 +48,7 @@
                     对于mysql数据库,创建表时使用MyISAM数据库引擎
                     这个语句和mysql5.7语法不兼容
              update:在原有的表的基础上操作,可以保留测试数据-->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
 
         <!--当session使用getCurrent方法创建时需要设置这个
         　　thread:操作本地事务
@@ -65,5 +65,7 @@
         <mapping class="test.pojo.Pet"/>
 
         <mapping resource="Student.hbm.xml"/>
+
+        <mapping class="test.pojo.Player"/>
     </session-factory>
 </hibernate-configuration>
